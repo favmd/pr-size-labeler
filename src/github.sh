@@ -17,7 +17,7 @@ github::add_label_to_pr() {
   local -r label_to_add=$2
 
   local -r body=$(curl -sSL -H "Authorization: token $GITHUB_TOKEN" -H "$GITHUB_API_HEADER" "$GITHUB_API_URI/repos/$GITHUB_REPOSITORY/pulls/$1")
-  local labels=$(echo "$body" | jq .labels | jq -r ".[] | .name" | grep -v "🏷️ size/")
+  local labels=$(echo "$body" | jq .labels | jq -r ".[] | .name" | grep -v ":label: size/")
   labels=$(printf "%s\n%s" "$labels" "$label_to_add")
   local -r comma_separated_labels=$(github::format_labels "$labels")
 

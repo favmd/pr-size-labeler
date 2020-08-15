@@ -15,7 +15,7 @@ labeler::label() {
 
   github::add_label_to_pr "$pr_number" "$label_to_add"
 
-  if [ "$label_to_add" == "🏷️ size/xl" ]; then
+  if [ "$label_to_add" == ":label: size/xl" ]; then
     if [ -n "$message_if_xl" ]; then
       github::comment "$message_if_xl"
     fi
@@ -35,15 +35,15 @@ labeler::label_for() {
   local -r l_max_size="$5"
 
   if [ "$total_modifications" -lt "$xs_max_size" ]; then
-    label="🏷️ size/xs"
+    label=":label: size/xs"
   elif [ "$total_modifications" -lt "$s_max_size" ]; then
-    label="🏷️ size/s"
+    label=":label: size/s"
   elif [ "$total_modifications" -lt "$m_max_size" ]; then
-    label="🏷️ size/m"
+    label=":label: size/m"
   elif [ "$total_modifications" -lt "$l_max_size" ]; then
-    label="🏷️ size/l"
+    label=":label: size/l"
   else
-    label="🏷️ size/xl"
+    label=":label: size/xl"
   fi
 
   echo "$label"
